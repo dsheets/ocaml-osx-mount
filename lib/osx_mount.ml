@@ -67,6 +67,8 @@ module Statfs = struct
   let list_of_ptr ptr len =
     let structs = CArray.from_ptr (!@ ptr) len in
     List.map of_struct (CArray.to_list structs)
+
+  let maxpathlen = Types.Statfs.maxpathlen
 end
 
 let getmntinfo ?(nowait=false) () =

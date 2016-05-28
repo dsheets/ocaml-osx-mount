@@ -33,6 +33,8 @@ module Statfs : sig
     mnt_from : string;
     flags  : int32;
   }
+
+  val maxpathlen : int
 end
 
 val getmntinfo : ?nowait:bool -> unit -> Statfs.t list

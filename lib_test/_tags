@@ -1,0 +1,2 @@
+<*.*>: package(alcotest), package(ctypes.stubs), use_osx_mount_stubs
+<*.*>: package(unix-errno.unix)

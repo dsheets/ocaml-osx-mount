@@ -19,19 +19,19 @@ module Statfs : sig
   type t = {
     bsize  : int;
     iosize : int;
-    blocks : int;
-    bfree  : int;
-    bavail : int;
-    files  : int;
-    ffree  : int;
+    blocks : int64;
+    bfree  : int64;
+    bavail : int64;
+    files  : int64;
+    ffree  : int64;
     fsid   : int64;
     owner  : int;
-    type_  : int;
-    subtype: int;
+    type_  : int32;
+    subtype: int32;
     type_name : string;
     mnt_on : string;
     mnt_from : string;
-    flags  : int;
+    flags  : int32;
   }
 end
 

@@ -24,19 +24,19 @@ module Statfs = struct
   type t = {
     bsize  : int;
     iosize : int;
-    blocks : int;
-    bfree  : int;
-    bavail : int;
-    files  : int;
-    ffree  : int;
+    blocks : int64;
+    bfree  : int64;
+    bavail : int64;
+    files  : int64;
+    ffree  : int64;
     fsid   : int64;
     owner  : int;
-    type_  : int;
-    subtype: int;
+    type_  : int32;
+    subtype: int32;
     type_name : string;
     mnt_on : string;
     mnt_from : string;
-    flags  : int;
+    flags  : int32;
   }
 
   let int64_of_fsid fsid =
@@ -49,19 +49,19 @@ module Statfs = struct
   let of_struct s = {
     bsize   = Unsigned.UInt32.to_int (getf s Types.Statfs.bsize);
     iosize  = Int32.to_int (getf s Types.Statfs.iosize);
-    blocks  = Unsigned.UInt64.to_int (getf s Types.Statfs.blocks);
-    bfree   = Unsigned.UInt64.to_int (getf s Types.Statfs.bfree);
-    bavail  = Unsigned.UInt64.to_int (getf s Types.Statfs.bavail);
-    files   = Unsigned.UInt64.to_int (getf s Types.Statfs.files);
-    ffree   = Unsigned.UInt64.to_int (getf s Types.Statfs.ffree);
+    blocks  = Unsigned.UInt64.to_int64 (getf s Types.Statfs.blocks);
+    bfree   = Unsigned.UInt64.to_int64 (getf s Types.Statfs.bfree);
+    bavail  = Unsigned.UInt64.to_int64 (getf s Types.Statfs.bavail);
+    files   = Unsigned.UInt64.to_int64 (getf s Types.Statfs.files);
+    ffree   = Unsigned.UInt64.to_int64 (getf s Types.Statfs.ffree);
     fsid    = int64_of_fsid (getf s Types.Statfs.fsid);
     owner   = getf s Types.Statfs.owner;
-    type_   = Unsigned.UInt32.to_int (getf s Types.Statfs.type_);
-    subtype = Unsigned.UInt32.to_int (getf s Types.Statfs.fssubtype);
+    type_   = Unsigned.UInt32.to_int32 (getf s Types.Statfs.type_);
+    subtype = Unsigned.UInt32.to_int32 (getf s Types.Statfs.fssubtype);
     type_name = string_of_array (getf s Types.Statfs.fstypename);
     mnt_on    = string_of_array (getf s Types.Statfs.mntonname);
     mnt_from  = string_of_array (getf s Types.Statfs.mntfromname);
-    flags     = Unsigned.UInt32.to_int (getf s Types.Statfs.flags);
+    flags     = Unsigned.UInt32.to_int32 (getf s Types.Statfs.flags);
   }
 
   let list_of_ptr ptr len =

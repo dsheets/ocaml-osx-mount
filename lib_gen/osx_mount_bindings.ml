@@ -46,9 +46,9 @@ module C(F: Cstubs.FOREIGN) = struct
     let t = view ~read:of_int ~write:to_int int
   end
   
-  let getmntinfo = F.foreign "osx_mount_getmntinfo"
-      (ptr (ptr Type.Statfs.t) @-> Fsstat_flags.t @-> returning int)
+  let getmntinfo = F.(foreign "osx_mount_getmntinfo"
+      (ptr (ptr Type.Statfs.t) @-> Fsstat_flags.t @-> returning int))
 
-  let statfs = F.foreign "osx_mount_statfs"
-      (string @-> ptr Type.Statfs.t @-> returning int)
+  let statfs = F.(foreign "osx_mount_statfs"
+      (string @-> ptr Type.Statfs.t @-> returning int))
 end
